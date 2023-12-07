@@ -7,6 +7,7 @@ from sklearn.linear_model import Ridge
 L = 0.08 # Range of elements of random Lie vectors
 N = 400 # Number of initial samples
 R = 100 # Size of square training images
+ALPHA = 1 # Parameter for Ridge Regression
 
 ## Points defining the unit space
 # Used to define affine transformations, which uniquely map triangles
@@ -52,7 +53,7 @@ class State:
         self.unit_to_region_mat = np.zeros((3,3))
 
         # Linear regression model and HOG
-        self.model = Ridge()
+        self.model = Ridge(ALPHA)
         self.hogger = cv2.HOGDescriptor()
 
     def region_outside_frame(self):
