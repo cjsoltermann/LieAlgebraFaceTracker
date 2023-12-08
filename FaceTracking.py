@@ -141,11 +141,11 @@ def begin_tracking(state: State):
     # Place the selected region into the workspace
     face = cv2.warpAffine(state.cur_frame, (state.unit_to_region_mat @ state.workspace_to_unit_mat)[0:2], (R, R), 0, cv2.WARP_INVERSE_MAP)
   
-    # Create a random vector in the Lie Algebra
+    # Create N random vectors in the Lie Algebra
     m = np.zeros([N,3,3])
     m[:,0:2,:] = np.random.uniform(-L, L, [N,2,3])
     
-    # Exponentitate the random vector to get a random transformation
+    # Exponentitate the random vectors to get random transformations
     M = expm(m)
 
     # Calculate the size of the hog vectors
